@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.jdyo.dao.mapper.master.GdfTaskManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.jdyo.dao.entity.master.GdfTaskManager" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="flow_id" property="flowId" jdbcType="INTEGER" />
+    <result column="oozie_id" property="oozieId" jdbcType="VARCHAR" />
+    <result column="has_whole" property="hasWhole" jdbcType="INTEGER" />
+    <result column="whole_id" property="wholeId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="yn" property="yn" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="VARCHAR" />
+    <result column="end_time" property="endTime" jdbcType="VARCHAR" />
+    <result column="is_tomorrow" property="isTomorrow" jdbcType="VARCHAR" />
+    <result column="schedule" property="schedule" jdbcType="VARCHAR" />
+    <result column="be_time" property="beTime" jdbcType="VARCHAR" />
+    <result column="en_time" property="enTime" jdbcType="VARCHAR" />
+    <result column="ti_cell" property="tiCell" jdbcType="VARCHAR" />
+    <result column="week_time" property="weekTime" jdbcType="VARCHAR" />
+    <result column="month_time" property="monthTime" jdbcType="VARCHAR" />
+    <result column="de_time" property="deTime" jdbcType="VARCHAR" />
+    <result column="catalog_type" property="catalogType" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="has_kettle" property="hasKettle" jdbcType="INTEGER" />
+    <result column="kettle_id" property="kettleId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, flow_id, oozie_id, has_whole, whole_id, create_time, yn, start_time, end_time, 
+    is_tomorrow, schedule, be_time, en_time, ti_cell, week_time, month_time, de_time, 
+    catalog_type, start_date, end_date, has_kettle, kettle_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gdf_task_manager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gdf_task_manager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.jdyo.dao.entity.master.GdfTaskManager" >
+    insert into gdf_task_manager (id, flow_id, oozie_id, 
+      has_whole, whole_id, create_time, 
+      yn, start_time, end_time, 
+      is_tomorrow, schedule, be_time, 
+      en_time, ti_cell, week_time, 
+      month_time, de_time, catalog_type, 
+      start_date, end_date, has_kettle, 
+      kettle_id)
+    values (#{id,jdbcType=INTEGER}, #{flowId,jdbcType=INTEGER}, #{oozieId,jdbcType=VARCHAR}, 
+      #{hasWhole,jdbcType=INTEGER}, #{wholeId,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{yn,jdbcType=VARCHAR}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, 
+      #{isTomorrow,jdbcType=VARCHAR}, #{schedule,jdbcType=VARCHAR}, #{beTime,jdbcType=VARCHAR}, 
+      #{enTime,jdbcType=VARCHAR}, #{tiCell,jdbcType=VARCHAR}, #{weekTime,jdbcType=VARCHAR}, 
+      #{monthTime,jdbcType=VARCHAR}, #{deTime,jdbcType=VARCHAR}, #{catalogType,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=VARCHAR}, #{endDate,jdbcType=VARCHAR}, #{hasKettle,jdbcType=INTEGER}, 
+      #{kettleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.jdyo.dao.entity.master.GdfTaskManager" >
+    insert into gdf_task_manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="flowId != null" >
+        flow_id,
+      </if>
+      <if test="oozieId != null" >
+        oozie_id,
+      </if>
+      <if test="hasWhole != null" >
+        has_whole,
+      </if>
+      <if test="wholeId != null" >
+        whole_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="yn != null" >
+        yn,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="isTomorrow != null" >
+        is_tomorrow,
+      </if>
+      <if test="schedule != null" >
+        schedule,
+      </if>
+      <if test="beTime != null" >
+        be_time,
+      </if>
+      <if test="enTime != null" >
+        en_time,
+      </if>
+      <if test="tiCell != null" >
+        ti_cell,
+      </if>
+      <if test="weekTime != null" >
+        week_time,
+      </if>
+      <if test="monthTime != null" >
+        month_time,
+      </if>
+      <if test="deTime != null" >
+        de_time,
+      </if>
+      <if test="catalogType != null" >
+        catalog_type,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="hasKettle != null" >
+        has_kettle,
+      </if>
+      <if test="kettleId != null" >
+        kettle_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="flowId != null" >
+        #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="oozieId != null" >
+        #{oozieId,jdbcType=VARCHAR},
+      </if>
+      <if test="hasWhole != null" >
+        #{hasWhole,jdbcType=INTEGER},
+      </if>
+      <if test="wholeId != null" >
+        #{wholeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="yn != null" >
+        #{yn,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isTomorrow != null" >
+        #{isTomorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="schedule != null" >
+        #{schedule,jdbcType=VARCHAR},
+      </if>
+      <if test="beTime != null" >
+        #{beTime,jdbcType=VARCHAR},
+      </if>
+      <if test="enTime != null" >
+        #{enTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCell != null" >
+        #{tiCell,jdbcType=VARCHAR},
+      </if>
+      <if test="weekTime != null" >
+        #{weekTime,jdbcType=VARCHAR},
+      </if>
+      <if test="monthTime != null" >
+        #{monthTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deTime != null" >
+        #{deTime,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogType != null" >
+        #{catalogType,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="hasKettle != null" >
+        #{hasKettle,jdbcType=INTEGER},
+      </if>
+      <if test="kettleId != null" >
+        #{kettleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.jdyo.dao.entity.master.GdfTaskManager" >
+    update gdf_task_manager
+    <set >
+      <if test="flowId != null" >
+        flow_id = #{flowId,jdbcType=INTEGER},
+      </if>
+      <if test="oozieId != null" >
+        oozie_id = #{oozieId,jdbcType=VARCHAR},
+      </if>
+      <if test="hasWhole != null" >
+        has_whole = #{hasWhole,jdbcType=INTEGER},
+      </if>
+      <if test="wholeId != null" >
+        whole_id = #{wholeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="yn != null" >
+        yn = #{yn,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isTomorrow != null" >
+        is_tomorrow = #{isTomorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="schedule != null" >
+        schedule = #{schedule,jdbcType=VARCHAR},
+      </if>
+      <if test="beTime != null" >
+        be_time = #{beTime,jdbcType=VARCHAR},
+      </if>
+      <if test="enTime != null" >
+        en_time = #{enTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCell != null" >
+        ti_cell = #{tiCell,jdbcType=VARCHAR},
+      </if>
+      <if test="weekTime != null" >
+        week_time = #{weekTime,jdbcType=VARCHAR},
+      </if>
+      <if test="monthTime != null" >
+        month_time = #{monthTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deTime != null" >
+        de_time = #{deTime,jdbcType=VARCHAR},
+      </if>
+      <if test="catalogType != null" >
+        catalog_type = #{catalogType,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="hasKettle != null" >
+        has_kettle = #{hasKettle,jdbcType=INTEGER},
+      </if>
+      <if test="kettleId != null" >
+        kettle_id = #{kettleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.jdyo.dao.entity.master.GdfTaskManager" >
+    update gdf_task_manager
+    set flow_id = #{flowId,jdbcType=INTEGER},
+      oozie_id = #{oozieId,jdbcType=VARCHAR},
+      has_whole = #{hasWhole,jdbcType=INTEGER},
+      whole_id = #{wholeId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      yn = #{yn,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      is_tomorrow = #{isTomorrow,jdbcType=VARCHAR},
+      schedule = #{schedule,jdbcType=VARCHAR},
+      be_time = #{beTime,jdbcType=VARCHAR},
+      en_time = #{enTime,jdbcType=VARCHAR},
+      ti_cell = #{tiCell,jdbcType=VARCHAR},
+      week_time = #{weekTime,jdbcType=VARCHAR},
+      month_time = #{monthTime,jdbcType=VARCHAR},
+      de_time = #{deTime,jdbcType=VARCHAR},
+      catalog_type = #{catalogType,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=VARCHAR},
+      has_kettle = #{hasKettle,jdbcType=INTEGER},
+      kettle_id = #{kettleId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

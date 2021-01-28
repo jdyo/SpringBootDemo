@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.jdyo.dao.mapper.master.WorkflowLogMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.jdyo.dao.entity.master.WorkflowLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="perform_user" property="performUser" jdbcType="VARCHAR" />
+    <result column="job_id" property="jobId" jdbcType="VARCHAR" />
+    <result column="oozie_id" property="oozieId" jdbcType="VARCHAR" />
+    <result column="node_id" property="nodeId" jdbcType="VARCHAR" />
+    <result column="node_name" property="nodeName" jdbcType="VARCHAR" />
+    <result column="perform_type" property="performType" jdbcType="INTEGER" />
+    <result column="scheduling_type" property="schedulingType" jdbcType="INTEGER" />
+    <result column="single_node_execution" property="singleNodeExecution" jdbcType="INTEGER" />
+    <result column="node_number" property="nodeNumber" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="exe_time" property="exeTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.jdyo.dao.entity.master.WorkflowLog" extends="BaseResultMap" >
+    <result column="file" property="file" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, perform_user, job_id, oozie_id, node_id, node_name, perform_type, 
+    scheduling_type, single_node_execution, node_number, status, exe_time, end_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    file
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from workflow_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from workflow_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.jdyo.dao.entity.master.WorkflowLog" >
+    insert into workflow_log (id, create_time, perform_user, 
+      job_id, oozie_id, node_id, 
+      node_name, perform_type, scheduling_type, 
+      single_node_execution, node_number, status, 
+      exe_time, end_time, file
+      )
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{performUser,jdbcType=VARCHAR}, 
+      #{jobId,jdbcType=VARCHAR}, #{oozieId,jdbcType=VARCHAR}, #{nodeId,jdbcType=VARCHAR}, 
+      #{nodeName,jdbcType=VARCHAR}, #{performType,jdbcType=INTEGER}, #{schedulingType,jdbcType=INTEGER}, 
+      #{singleNodeExecution,jdbcType=INTEGER}, #{nodeNumber,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{exeTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{file,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.jdyo.dao.entity.master.WorkflowLog" >
+    insert into workflow_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="performUser != null" >
+        perform_user,
+      </if>
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="oozieId != null" >
+        oozie_id,
+      </if>
+      <if test="nodeId != null" >
+        node_id,
+      </if>
+      <if test="nodeName != null" >
+        node_name,
+      </if>
+      <if test="performType != null" >
+        perform_type,
+      </if>
+      <if test="schedulingType != null" >
+        scheduling_type,
+      </if>
+      <if test="singleNodeExecution != null" >
+        single_node_execution,
+      </if>
+      <if test="nodeNumber != null" >
+        node_number,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="exeTime != null" >
+        exe_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="file != null" >
+        file,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="performUser != null" >
+        #{performUser,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="oozieId != null" >
+        #{oozieId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="performType != null" >
+        #{performType,jdbcType=INTEGER},
+      </if>
+      <if test="schedulingType != null" >
+        #{schedulingType,jdbcType=INTEGER},
+      </if>
+      <if test="singleNodeExecution != null" >
+        #{singleNodeExecution,jdbcType=INTEGER},
+      </if>
+      <if test="nodeNumber != null" >
+        #{nodeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="exeTime != null" >
+        #{exeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="file != null" >
+        #{file,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.jdyo.dao.entity.master.WorkflowLog" >
+    update workflow_log
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="performUser != null" >
+        perform_user = #{performUser,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null" >
+        job_id = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="oozieId != null" >
+        oozie_id = #{oozieId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        node_id = #{nodeId,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        node_name = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="performType != null" >
+        perform_type = #{performType,jdbcType=INTEGER},
+      </if>
+      <if test="schedulingType != null" >
+        scheduling_type = #{schedulingType,jdbcType=INTEGER},
+      </if>
+      <if test="singleNodeExecution != null" >
+        single_node_execution = #{singleNodeExecution,jdbcType=INTEGER},
+      </if>
+      <if test="nodeNumber != null" >
+        node_number = #{nodeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="exeTime != null" >
+        exe_time = #{exeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="file != null" >
+        file = #{file,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.jdyo.dao.entity.master.WorkflowLog" >
+    update workflow_log
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      perform_user = #{performUser,jdbcType=VARCHAR},
+      job_id = #{jobId,jdbcType=VARCHAR},
+      oozie_id = #{oozieId,jdbcType=VARCHAR},
+      node_id = #{nodeId,jdbcType=VARCHAR},
+      node_name = #{nodeName,jdbcType=VARCHAR},
+      perform_type = #{performType,jdbcType=INTEGER},
+      scheduling_type = #{schedulingType,jdbcType=INTEGER},
+      single_node_execution = #{singleNodeExecution,jdbcType=INTEGER},
+      node_number = #{nodeNumber,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      exe_time = #{exeTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      file = #{file,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.jdyo.dao.entity.master.WorkflowLog" >
+    update workflow_log
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      perform_user = #{performUser,jdbcType=VARCHAR},
+      job_id = #{jobId,jdbcType=VARCHAR},
+      oozie_id = #{oozieId,jdbcType=VARCHAR},
+      node_id = #{nodeId,jdbcType=VARCHAR},
+      node_name = #{nodeName,jdbcType=VARCHAR},
+      perform_type = #{performType,jdbcType=INTEGER},
+      scheduling_type = #{schedulingType,jdbcType=INTEGER},
+      single_node_execution = #{singleNodeExecution,jdbcType=INTEGER},
+      node_number = #{nodeNumber,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      exe_time = #{exeTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

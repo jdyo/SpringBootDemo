@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+    <!-- id可随意写，当然最好有意义 -->　　
+    <id>fat-jar</id>
+    <formats>
+        <format>tgz</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <baseDirectory>Service</baseDirectory>
+    <files>
+        <file>
+            <source>target/service-0.0.1-SNAPSHOT.jar</source>
+            <outputDirectory>.</outputDirectory>
+        </file>
+    </files>
+
+</assembly>

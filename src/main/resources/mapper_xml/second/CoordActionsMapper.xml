@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.jdyo.dao.mapper.second.CoordActionsMapper" >
+  <resultMap id="BaseResultMap" type="com.example.demo.jdyo.dao.entity.second.CoordActions" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="action_number" property="actionNumber" jdbcType="INTEGER" />
+    <result column="console_url" property="consoleUrl" jdbcType="VARCHAR" />
+    <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="error_code" property="errorCode" jdbcType="VARCHAR" />
+    <result column="error_message" property="errorMessage" jdbcType="VARCHAR" />
+    <result column="external_id" property="externalId" jdbcType="VARCHAR" />
+    <result column="external_status" property="externalStatus" jdbcType="VARCHAR" />
+    <result column="job_id" property="jobId" jdbcType="VARCHAR" />
+    <result column="last_modified_time" property="lastModifiedTime" jdbcType="TIMESTAMP" />
+    <result column="nominal_time" property="nominalTime" jdbcType="TIMESTAMP" />
+    <result column="pending" property="pending" jdbcType="INTEGER" />
+    <result column="rerun_time" property="rerunTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="time_out" property="timeOut" jdbcType="INTEGER" />
+    <result column="tracker_uri" property="trackerUri" jdbcType="VARCHAR" />
+    <result column="job_type" property="jobType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.demo.jdyo.dao.entity.second.CoordActionsWithBLOBs" extends="BaseResultMap" >
+    <result column="action_xml" property="actionXml" jdbcType="LONGVARBINARY" />
+    <result column="created_conf" property="createdConf" jdbcType="LONGVARBINARY" />
+    <result column="missing_dependencies" property="missingDependencies" jdbcType="LONGVARBINARY" />
+    <result column="push_missing_dependencies" property="pushMissingDependencies" jdbcType="LONGVARBINARY" />
+    <result column="run_conf" property="runConf" jdbcType="LONGVARBINARY" />
+    <result column="sla_xml" property="slaXml" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, action_number, console_url, created_time, error_code, error_message, external_id, 
+    external_status, job_id, last_modified_time, nominal_time, pending, rerun_time, status, 
+    time_out, tracker_uri, job_type
+  </sql>
+  <sql id="Blob_Column_List" >
+    action_xml, created_conf, missing_dependencies, push_missing_dependencies, run_conf, 
+    sla_xml
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from COORD_ACTIONS
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COORD_ACTIONS
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.jdyo.dao.entity.second.CoordActionsWithBLOBs" >
+    insert into COORD_ACTIONS (id, action_number, console_url, 
+      created_time, error_code, error_message, 
+      external_id, external_status, job_id, 
+      last_modified_time, nominal_time, pending, 
+      rerun_time, status, time_out, 
+      tracker_uri, job_type, action_xml, 
+      created_conf, missing_dependencies, 
+      push_missing_dependencies, run_conf, 
+      sla_xml)
+    values (#{id,jdbcType=VARCHAR}, #{actionNumber,jdbcType=INTEGER}, #{consoleUrl,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{errorCode,jdbcType=VARCHAR}, #{errorMessage,jdbcType=VARCHAR}, 
+      #{externalId,jdbcType=VARCHAR}, #{externalStatus,jdbcType=VARCHAR}, #{jobId,jdbcType=VARCHAR}, 
+      #{lastModifiedTime,jdbcType=TIMESTAMP}, #{nominalTime,jdbcType=TIMESTAMP}, #{pending,jdbcType=INTEGER}, 
+      #{rerunTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{timeOut,jdbcType=INTEGER}, 
+      #{trackerUri,jdbcType=VARCHAR}, #{jobType,jdbcType=VARCHAR}, #{actionXml,jdbcType=LONGVARBINARY}, 
+      #{createdConf,jdbcType=LONGVARBINARY}, #{missingDependencies,jdbcType=LONGVARBINARY}, 
+      #{pushMissingDependencies,jdbcType=LONGVARBINARY}, #{runConf,jdbcType=LONGVARBINARY}, 
+      #{slaXml,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.jdyo.dao.entity.second.CoordActionsWithBLOBs" >
+    insert into COORD_ACTIONS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="actionNumber != null" >
+        action_number,
+      </if>
+      <if test="consoleUrl != null" >
+        console_url,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="errorCode != null" >
+        error_code,
+      </if>
+      <if test="errorMessage != null" >
+        error_message,
+      </if>
+      <if test="externalId != null" >
+        external_id,
+      </if>
+      <if test="externalStatus != null" >
+        external_status,
+      </if>
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="lastModifiedTime != null" >
+        last_modified_time,
+      </if>
+      <if test="nominalTime != null" >
+        nominal_time,
+      </if>
+      <if test="pending != null" >
+        pending,
+      </if>
+      <if test="rerunTime != null" >
+        rerun_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="timeOut != null" >
+        time_out,
+      </if>
+      <if test="trackerUri != null" >
+        tracker_uri,
+      </if>
+      <if test="jobType != null" >
+        job_type,
+      </if>
+      <if test="actionXml != null" >
+        action_xml,
+      </if>
+      <if test="createdConf != null" >
+        created_conf,
+      </if>
+      <if test="missingDependencies != null" >
+        missing_dependencies,
+      </if>
+      <if test="pushMissingDependencies != null" >
+        push_missing_dependencies,
+      </if>
+      <if test="runConf != null" >
+        run_conf,
+      </if>
+      <if test="slaXml != null" >
+        sla_xml,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="actionNumber != null" >
+        #{actionNumber,jdbcType=INTEGER},
+      </if>
+      <if test="consoleUrl != null" >
+        #{consoleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMessage != null" >
+        #{errorMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="externalId != null" >
+        #{externalId,jdbcType=VARCHAR},
+      </if>
+      <if test="externalStatus != null" >
+        #{externalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifiedTime != null" >
+        #{lastModifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nominalTime != null" >
+        #{nominalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pending != null" >
+        #{pending,jdbcType=INTEGER},
+      </if>
+      <if test="rerunTime != null" >
+        #{rerunTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="timeOut != null" >
+        #{timeOut,jdbcType=INTEGER},
+      </if>
+      <if test="trackerUri != null" >
+        #{trackerUri,jdbcType=VARCHAR},
+      </if>
+      <if test="jobType != null" >
+        #{jobType,jdbcType=VARCHAR},
+      </if>
+      <if test="actionXml != null" >
+        #{actionXml,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="createdConf != null" >
+        #{createdConf,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="missingDependencies != null" >
+        #{missingDependencies,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="pushMissingDependencies != null" >
+        #{pushMissingDependencies,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="runConf != null" >
+        #{runConf,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="slaXml != null" >
+        #{slaXml,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.jdyo.dao.entity.second.CoordActionsWithBLOBs" >
+    update COORD_ACTIONS
+    <set >
+      <if test="actionNumber != null" >
+        action_number = #{actionNumber,jdbcType=INTEGER},
+      </if>
+      <if test="consoleUrl != null" >
+        console_url = #{consoleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorCode != null" >
+        error_code = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMessage != null" >
+        error_message = #{errorMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="externalId != null" >
+        external_id = #{externalId,jdbcType=VARCHAR},
+      </if>
+      <if test="externalStatus != null" >
+        external_status = #{externalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null" >
+        job_id = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastModifiedTime != null" >
+        last_modified_time = #{lastModifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nominalTime != null" >
+        nominal_time = #{nominalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pending != null" >
+        pending = #{pending,jdbcType=INTEGER},
+      </if>
+      <if test="rerunTime != null" >
+        rerun_time = #{rerunTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="timeOut != null" >
+        time_out = #{timeOut,jdbcType=INTEGER},
+      </if>
+      <if test="trackerUri != null" >
+        tracker_uri = #{trackerUri,jdbcType=VARCHAR},
+      </if>
+      <if test="jobType != null" >
+        job_type = #{jobType,jdbcType=VARCHAR},
+      </if>
+      <if test="actionXml != null" >
+        action_xml = #{actionXml,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="createdConf != null" >
+        created_conf = #{createdConf,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="missingDependencies != null" >
+        missing_dependencies = #{missingDependencies,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="pushMissingDependencies != null" >
+        push_missing_dependencies = #{pushMissingDependencies,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="runConf != null" >
+        run_conf = #{runConf,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="slaXml != null" >
+        sla_xml = #{slaXml,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.jdyo.dao.entity.second.CoordActionsWithBLOBs" >
+    update COORD_ACTIONS
+    set action_number = #{actionNumber,jdbcType=INTEGER},
+      console_url = #{consoleUrl,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      error_code = #{errorCode,jdbcType=VARCHAR},
+      error_message = #{errorMessage,jdbcType=VARCHAR},
+      external_id = #{externalId,jdbcType=VARCHAR},
+      external_status = #{externalStatus,jdbcType=VARCHAR},
+      job_id = #{jobId,jdbcType=VARCHAR},
+      last_modified_time = #{lastModifiedTime,jdbcType=TIMESTAMP},
+      nominal_time = #{nominalTime,jdbcType=TIMESTAMP},
+      pending = #{pending,jdbcType=INTEGER},
+      rerun_time = #{rerunTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      time_out = #{timeOut,jdbcType=INTEGER},
+      tracker_uri = #{trackerUri,jdbcType=VARCHAR},
+      job_type = #{jobType,jdbcType=VARCHAR},
+      action_xml = #{actionXml,jdbcType=LONGVARBINARY},
+      created_conf = #{createdConf,jdbcType=LONGVARBINARY},
+      missing_dependencies = #{missingDependencies,jdbcType=LONGVARBINARY},
+      push_missing_dependencies = #{pushMissingDependencies,jdbcType=LONGVARBINARY},
+      run_conf = #{runConf,jdbcType=LONGVARBINARY},
+      sla_xml = #{slaXml,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.jdyo.dao.entity.second.CoordActions" >
+    update COORD_ACTIONS
+    set action_number = #{actionNumber,jdbcType=INTEGER},
+      console_url = #{consoleUrl,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      error_code = #{errorCode,jdbcType=VARCHAR},
+      error_message = #{errorMessage,jdbcType=VARCHAR},
+      external_id = #{externalId,jdbcType=VARCHAR},
+      external_status = #{externalStatus,jdbcType=VARCHAR},
+      job_id = #{jobId,jdbcType=VARCHAR},
+      last_modified_time = #{lastModifiedTime,jdbcType=TIMESTAMP},
+      nominal_time = #{nominalTime,jdbcType=TIMESTAMP},
+      pending = #{pending,jdbcType=INTEGER},
+      rerun_time = #{rerunTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      time_out = #{timeOut,jdbcType=INTEGER},
+      tracker_uri = #{trackerUri,jdbcType=VARCHAR},
+      job_type = #{jobType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
