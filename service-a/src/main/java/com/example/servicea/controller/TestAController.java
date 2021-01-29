@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestAController {
 
-    @RequestMapping("testA")
+    @RequestMapping("/testA")
     public String testA(){
         return "Hello,SpringCloud for TestA";
     }
